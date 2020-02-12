@@ -3,7 +3,7 @@ module github.com/barbosaigor/aprilcsdocker
 go 1.13
 
 require (
-	github.com/barbosaigor/april v0.0.0-20200211180840-cb1f96a40079 // indirect
+	github.com/barbosaigor/april v0.0.0-20200212152050-3cb313f83230 // indirect
 	github.com/docker/distribution v2.7.1+incompatible // indirect
 	github.com/docker/docker v1.13.1
 	github.com/docker/go-connections v0.4.0 // indirect
