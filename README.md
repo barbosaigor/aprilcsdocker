@@ -1,12 +1,15 @@
-# April Chaos Server (Docker)  
+# Docker Chaos Server  
 An chaos server implementation that terminates docker containers instances by API.
 
-## What is a Chaos server ?
-Chaos server hosts an API that terminantes instances. [Aprils](https://github.com/barbosaigor/april) CLI runs its algorithm and asks the Chaos server to finish 
+## What is a Chaos Server ?
+Chaos server hosts an API that terminantes instances. It is used in [Aprils](https://github.com/barbosaigor/april) CLI, which runs its algorithm and asks the Chaos server to finish 
 the selected instances. The API implementation lives in april/destroyer package, so chaos servers must include that package and
 implement the Destroyer interface, which contain the business logic for terminate instances.  
 
-Destroyer hosts API on port 7071 if not provided  
+Dockercs hosts API    
+-u username for chaos server auth  
+-s password for chaos server auth  
+-p port number (Default is 7071)  
 ```bash 
-go run cmd/destroyer 8080 // will listen on port 8080
+go run cmd/dockercs -u bob -s mysecret
 ``` 
