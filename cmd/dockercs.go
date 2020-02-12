@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	
-	"github.com/barbosaigor/aprilcsdocker/cli"
+	"github.com/barbosaigor/dockercs/cli"
 )
 
 func main() {

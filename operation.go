@@ -1,4 +1,4 @@
-package aprilcsdocker
+package dockercs
 
 import (
 	"errors"

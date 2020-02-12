@@ -3,7 +3,7 @@ package cli
 import (
 	"github.com/spf13/cobra"
 	"github.com/barbosaigor/april/destroyer"
-	csd "github.com/barbosaigor/aprilcsdocker"
+	csd "github.com/barbosaigor/dockercs"
 )
 
 const VERSION = "1.0.0"

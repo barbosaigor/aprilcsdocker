@@ -1,4 +1,4 @@
-module github.com/barbosaigor/aprilcsdocker
+module github.com/barbosaigor/dockercs
 
 go 1.13
 

@@ -1,4 +1,4 @@
-package aprilcsdocker
+package dockercs
 
 type DockerDestryr struct{}
 
