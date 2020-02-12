@@ -1,9 +1,9 @@
 package cli
 
 import (
-	"github.com/spf13/cobra"
 	"github.com/barbosaigor/april/destroyer"
 	csd "github.com/barbosaigor/dockercs"
+	"github.com/spf13/cobra"
 )
 
 const VERSION = "1.0.0"
