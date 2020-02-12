@@ -23,6 +23,8 @@ func stop(containerId string) error {
 	return nil
 }
 
+// listContainers list running containers, but if all is true
+// stopped containers is listed too.
 func listContainers(all bool) (map[string]string, error) {
 	cli, err := client.NewEnvClient()
 	if err != nil {

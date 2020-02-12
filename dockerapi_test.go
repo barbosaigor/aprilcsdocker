@@ -6,7 +6,7 @@ import (
 )
 
 func TestListContainer(t *testing.T) {
-	ctns, err := listContainer()
+	ctns, err := listContainers(false)
 	if err != nil {
 		t.Errorf("Error to list containers.\n%v", err.Error())
 	}
@@ -14,7 +14,7 @@ func TestListContainer(t *testing.T) {
 }
 
 func TestGetContainerId(t *testing.T) {
-	_, err := listContainer()
+	_, err := listContainers(false)
 	if err != nil {
 		t.Errorf("Error to list containers.\n%v", err.Error())
 	}
