@@ -15,6 +15,8 @@ go install dockercs.go
 go build -o $YOURPATH/dockercs dockercs.go  
 ```  
 
+Dockercs requests dockerd locally, make sure that dockerd is running.  
+
 Dockercs hosts API    
 -u username for chaos server auth  
 -s password for chaos server auth  
