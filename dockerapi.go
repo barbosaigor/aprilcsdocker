@@ -5,11 +5,12 @@ import (
 	"errors"
 	"fmt"
 
+	"github.com/barbosaigor/april/destroyer"
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/client"
 )
 
-func stop(containerId string) error {
+func stopContainer(containerId string) error {
 	cli, err := client.NewEnvClient()
 	if err != nil {
 		fmt.Println("Unable to create docker client")
@@ -23,9 +24,15 @@ func stop(containerId string) error {
 	return nil
 }
 
+type Container struct {
+	Id string
+	Name string
+	Status destroyer.Status
+}
+
 // listContainers list running containers, but if all is true
 // stopped containers is listed too.
-func listContainers(all bool) (map[string]string, error) {
+func listContainers(all bool) ([]Container, error) {
 	cli, err := client.NewEnvClient()
 	if err != nil {
 		fmt.Println("Unable to create docker client")
@@ -38,19 +45,37 @@ func listContainers(all bool) (map[string]string, error) {
 		return nil, err
 	}
 
+	ctns := make([]Container, len(containers))
+	for i, container := range containers {
+		ctns[i].Id = container.ID
+		if len(container.Names) > 0 {
+			ctns[i].Name = container.Names[0][1:]
+		}
+		// TODO: Status
+	}
+	return ctns, nil
+}
+
+// getContainersId get running containers names mapped to an id, but if all is true
+// stopped containers is listed too.
+func getContainersId(all bool) (map[string]string, error) {
+	containers, err := listContainers(all)
+	if err != nil {
+		return nil, err
+	}
 	ctns := make(map[string]string, len(containers))
 	for _, container := range containers {
-		if len(container.Names) > 0 {
-			ctns[container.Names[0][1:]] = container.ID
+		if container.Name != "" {
+			ctns[container.Name] = container.Id
 		} else {
-			ctns[container.ID] = container.ID
+			ctns[container.Id] = container.Id
 		}
 	}
 	return ctns, nil
 }
 
 func getContainerId(container string) (string, error) {
-	ctns, err := listContainers(true)
+	ctns, err := getContainersId(true)
 	if err != nil {
 		return "", err
 	}

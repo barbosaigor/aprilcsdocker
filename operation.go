@@ -15,13 +15,13 @@ func Stop(container string) error {
 	if err != nil {
 		return err
 	}
-	return stop(id)
+	return stopContainer(id)
 }
 
 // StopAll stops all containers, but if a container
 // throws an error then stop operation
 func StopAll(container []string) error {
-	if container == nil {
+	if container == nil || len(container) == 0 {
 		return EmptyContainer
 	}
 	for _, c := range container {
