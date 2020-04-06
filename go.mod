@@ -2,6 +2,8 @@ module github.com/barbosaigor/dockercs
 
 go 1.14
 
+replace github.com/barbosaigor/april => /home/igor/go/src/github.com/barbosaigor/april
+
 require (
 	github.com/barbosaigor/april v0.0.0-20200406211523-4e5cb1749270
 	github.com/barbosaigor/graphdeppicker v0.0.0-20200222122628-7eec4ff89fa8 // indirect
