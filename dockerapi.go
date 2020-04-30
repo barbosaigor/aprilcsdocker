@@ -10,13 +10,13 @@ import (
 	"github.com/docker/docker/client"
 )
 
-func stopContainer(containerId string) error {
+func stopContainer(containerID string) error {
 	cli, err := client.NewEnvClient()
 	if err != nil {
 		fmt.Println("Unable to create docker client")
 		return err
 	}
-	err = cli.ContainerStop(context.Background(), containerId, nil)
+	err = cli.ContainerStop(context.Background(), containerID, nil)
 	if err != nil {
 		fmt.Println("Unable to stop docker container")
 		return err
@@ -24,9 +24,10 @@ func stopContainer(containerId string) error {
 	return nil
 }
 
+// Container owns container information
 type Container struct {
-	Id string
-	Name string
+	ID     string
+	Name   string
 	Status destroyer.Status
 }
 
@@ -47,7 +48,7 @@ func listContainers(all bool) ([]Container, error) {
 
 	ctns := make([]Container, len(containers))
 	for i, container := range containers {
-		ctns[i].Id = container.ID
+		ctns[i].ID = container.ID
 		if len(container.Names) > 0 {
 			ctns[i].Name = container.Names[0][1:]
 		}
@@ -56,9 +57,9 @@ func listContainers(all bool) ([]Container, error) {
 	return ctns, nil
 }
 
-// getContainersId get running containers names mapped to an id, but if all is true
+// getContainersID get running containers names mapped to an id, but if all is true
 // stopped containers is listed too.
-func getContainersId(all bool) (map[string]string, error) {
+func getContainersID(all bool) (map[string]string, error) {
 	containers, err := listContainers(all)
 	if err != nil {
 		return nil, err
@@ -66,23 +67,23 @@ func getContainersId(all bool) (map[string]string, error) {
 	ctns := make(map[string]string, len(containers))
 	for _, container := range containers {
 		if container.Name != "" {
-			ctns[container.Name] = container.Id
+			ctns[container.Name] = container.ID
 		} else {
-			ctns[container.Id] = container.Id
+			ctns[container.ID] = container.ID
 		}
 	}
 	return ctns, nil
 }
 
-func getContainerId(container string) (string, error) {
-	ctns, err := getContainersId(true)
+func getContainerID(container string) (string, error) {
+	ctns, err := getContainersID(true)
 	if err != nil {
 		return "", err
 	}
 
-	cId, ok := ctns[container]
+	cID, ok := ctns[container]
 	if !ok {
 		return "", errors.New("Container not found")
 	}
-	return cId, nil
+	return cID, nil
 }

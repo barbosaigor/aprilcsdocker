@@ -4,14 +4,15 @@ import (
 	"errors"
 )
 
-var EmptyContainer = errors.New("Empty container")
+// ErrEmptyContainer implies empty container error
+var ErrEmptyContainer = errors.New("Empty container")
 
 // Stop container
 func Stop(container string) error {
 	if container == "" {
-		return EmptyContainer
+		return ErrEmptyContainer
 	}
-	id, err := getContainerId(container)
+	id, err := getContainerID(container)
 	if err != nil {
 		return err
 	}
@@ -22,7 +23,7 @@ func Stop(container string) error {
 // throws an error then stop operation
 func StopAll(container []string) error {
 	if container == nil || len(container) == 0 {
-		return EmptyContainer
+		return ErrEmptyContainer
 	}
 	for _, c := range container {
 		if err := Stop(c); err != nil {

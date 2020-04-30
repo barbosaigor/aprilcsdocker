@@ -2,17 +2,19 @@ package dockercs
 
 import "github.com/barbosaigor/april/destroyer"
 
-// Implement chaos server interface from april/destroyer
+// ChaosServerDocker implements chaos server interface from april/destroyer
 type ChaosServerDocker struct{}
 
+// Shutdown turns off a service
 func (d ChaosServerDocker) Shutdown(svc string) error {
-	if id, err := getContainerId(svc); err != nil {
+	id, err := getContainerID(svc)
+	if err != nil {
 		return err
-	} else {
-		return stopContainer(id)
 	}
+	return stopContainer(id)
 }
 
+// ListInstances lists all instances with corresponding status
 func (d ChaosServerDocker) ListInstances(status destroyer.Status) ([]destroyer.Instance, error) {
 	containers, err := listContainers(status == destroyer.Any)
 	if err != nil {
@@ -20,7 +22,11 @@ func (d ChaosServerDocker) ListInstances(status destroyer.Status) ([]destroyer.I
 	}
 	svcs := make([]destroyer.Instance, len(containers))
 	for i, c := range containers {
-		svcs[i] = destroyer.Instance{c.Name, c.Status}
+		svcs[i] = destroyer.Instance{Name: c.Name, Sts: c.Status}
 	}
 	return svcs, nil
+}
+
+// OnStart is a life cycle routine when stating the chaos server
+func (d ChaosServerDocker) OnStart() {
 }

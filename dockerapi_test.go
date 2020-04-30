@@ -19,9 +19,9 @@ func TestGetContainerId(t *testing.T) {
 		t.Errorf("Error to list containers.\n%v", err.Error())
 	}
 	// Test is created manually
-	cId, err := getContainerId("test")
+	cID, err := getContainerID("test")
 	if err != nil {
 		t.Errorf("Error to get container id.\n%v", err.Error())
 	}
-	fmt.Println("Container ID: ", cId)
+	fmt.Println("Container ID: ", cID)
 }
