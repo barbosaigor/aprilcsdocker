@@ -1,10 +1,10 @@
 package main
 
 import (
-	"fmt"
+	"log"
 
-	"github.com/barbosaigor/dockercs"
 	"github.com/barbosaigor/april/destroyer/cli"
+	"github.com/barbosaigor/dockercs"
 )
 
 func main() {
@@ -12,6 +12,6 @@ func main() {
 	cli.RootCmd.Long = "Dockercs (Chaos server) shutdowns Docker containers via an API."
 	cli.Cs = dockercs.ChaosServerDocker{}
 	if err := cli.Execute(); err != nil {
-		fmt.Printf("Error: %v\n", err)
+		log.Printf("Error: %v\n", err)
 	}
 }
