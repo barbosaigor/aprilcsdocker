@@ -22,7 +22,7 @@ func (d ChaosServerDocker) ListInstances(status destroyer.Status) ([]destroyer.I
 	}
 	svcs := make([]destroyer.Instance, len(containers))
 	for i, c := range containers {
-		svcs[i] = destroyer.Instance{Name: c.Name, Sts: c.Status}
+		svcs[i] = destroyer.Instance{Name: c.Name, Sts: destroyer.Up}
 	}
 	return svcs, nil
 }
