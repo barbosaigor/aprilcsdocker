@@ -20,7 +20,7 @@ func Stop(container string) error {
 }
 
 // StopAll stops all containers, but if a container
-// throws an error then stop operation
+// throws an error then stop all subsequent operations
 func StopAll(container []string) error {
 	if container == nil || len(container) == 0 {
 		return ErrEmptyContainer
