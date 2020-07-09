@@ -1,26 +1,23 @@
 # Docker Chaos Server  
-An chaos server implementation that terminates docker containers instances by API.  
+A Chaos Server implementation that terminates Docker containers, used by [April](https://github.com/barbosaigor/april) tool.
 
 ## What is a Chaos Server ?
-Chaos server hosts an API that terminantes instances. It is used in [April](https://github.com/barbosaigor/april) CLI, which run its algorithm and asks the Chaos server to finish 
-the selected instances. The API implementation lives in april/destroyer package, so chaos servers must include that package and
-implement the Destroyer interface, which contain the business logic for terminate instances.  
+Chaos server hosts an API which terminates instances. It is used by [April](https://github.com/barbosaigor/april) CLI, 
+which runs its algorithm and asks the Chaos Server to finish any selected instances. 
+All Chaos Servers implementations must implement the interface defined in april/destroyer package, so CSs must include that package and
+implement the Destroyer interface, where the business logic to terminate instances should be defined.  
 
 ## Installation  
 ```bash 
-go get -u github.com/barbosaigor/dockercs  
-cd $GOPATH/src/github.com/barbosaigor/dockercs/cmd  
-go install dockercs.go  
-# Or  
-go build -o $YOURPATH/dockercs dockercs.go  
+go get github.com/barbosaigor/dockercs/cmd/...
 ```  
 
-Dockercs requests dockerd locally, make sure that dockerd is running.  
-
-Dockercs hosts API    
+DockerCS hosts an HTTP API    
 -u username for chaos server auth  
 -s password for chaos server auth  
 -p port number (Default is 7071)  
 ```bash 
 dockercs -u myusername -s mysecret  
 ``` 
+
+_DockerCS requests dockerd locally, make sure that DockerCS has access to dockerd locally._  
