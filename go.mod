@@ -7,8 +7,6 @@ replace github.com/barbosaigor/april => /home/igor/go/src/github.com/barbosaigor
 require (
 	github.com/Microsoft/go-winio v0.4.14 // indirect
 	github.com/barbosaigor/april v0.0.0-20200406211523-4e5cb1749270
-	github.com/barbosaigor/graphdeppicker v0.0.0-20200222122628-7eec4ff89fa8 // indirect
-	github.com/barbosaigor/picker v0.0.0-20200203155416-9ffddd13fc37 // indirect
 	github.com/docker/distribution v2.7.1+incompatible // indirect
 	github.com/docker/docker v1.13.0
 	github.com/docker/go-connections v0.4.0 // indirect
