@@ -9,7 +9,7 @@ implement the Destroyer interface, where the business logic to terminate instanc
 
 ## Installation  
 ```bash 
-go get github.com/barbosaigor/dockercs/cmd/...
+go get -u github.com/barbosaigor/dockercs/...
 ```  
 
 DockerCS hosts an HTTP API    
