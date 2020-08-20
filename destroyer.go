@@ -1,8 +1,8 @@
 package dockercs
 
-import "github.com/barbosaigor/april/destroyer"
+import "github.com/barbosaigor/april/chaosserver"
 
-// ChaosServerDocker implements chaos server interface from april/destroyer
+// ChaosServerDocker implements chaos server interface from april/chaosserver
 type ChaosServerDocker struct{}
 
 // Shutdown turns off a service
@@ -15,14 +15,14 @@ func (d ChaosServerDocker) Shutdown(svc string) error {
 }
 
 // ListInstances lists all instances with corresponding status
-func (d ChaosServerDocker) ListInstances(status destroyer.Status) ([]destroyer.Instance, error) {
-	containers, err := listContainers(status == destroyer.Any)
+func (d ChaosServerDocker) ListInstances(status chaosserver.Status) ([]chaosserver.Instance, error) {
+	containers, err := listContainers(status == chaosserver.Any)
 	if err != nil {
 		return nil, err
 	}
-	svcs := make([]destroyer.Instance, len(containers))
+	svcs := make([]chaosserver.Instance, len(containers))
 	for i, c := range containers {
-		svcs[i] = destroyer.Instance{Name: c.Name, Sts: destroyer.Up}
+		svcs[i] = chaosserver.Instance{Name: c.Name, Sts: chaosserver.Up}
 	}
 	return svcs, nil
 }

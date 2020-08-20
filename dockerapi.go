@@ -5,7 +5,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/barbosaigor/april/destroyer"
+	"github.com/barbosaigor/april/chaosserver"
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/client"
 )
@@ -28,7 +28,7 @@ func stopContainer(containerID string) error {
 type Container struct {
 	ID     string
 	Name   string
-	Status destroyer.Status
+	Status chaosserver.Status
 }
 
 // listContainers list running containers, but if all is true

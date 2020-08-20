@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"github.com/barbosaigor/april/destroyer/cli"
+	"github.com/barbosaigor/april/chaosserver/cli"
 	"github.com/barbosaigor/dockercs"
 )
 

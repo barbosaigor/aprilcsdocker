@@ -4,8 +4,8 @@ A Chaos Server implementation that terminates Docker containers, used by [April]
 ## What is a Chaos Server ?
 Chaos server hosts an API which terminates instances. It is used by [April](https://github.com/barbosaigor/april) CLI, 
 which runs its algorithm and asks the Chaos Server to finish any selected instances. 
-All Chaos Servers implementations must implement the interface defined in april/destroyer package, so CSs must include that package and
-implement the Destroyer interface, where the business logic to terminate instances should be defined.  
+All Chaos Servers implementations must implement the interface defined in april/chaosserver package, so CSs must include that package and
+implement the ChaosServer interface, where the business logic to terminate instances should be defined.  
 
 ## Installation  
 ```bash 
@@ -20,4 +20,4 @@ DockerCS hosts an HTTP API
 dockercs -u myusername -s mysecret  
 ``` 
 
-_DockerCS requests dockerd locally, make sure that DockerCS has access to dockerd locally._  
+_DockerCS requests dockerd locally, make sure that DockerCS has access to dockerd._  
